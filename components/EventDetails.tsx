@@ -5,9 +5,10 @@ import {getSimilarEventsBySlug} from "@/lib/actions/event.actions";
 import Image from "next/image";
 import BookEvent from "@/components/BookEvent";
 import EventCard from "@/components/EventCard";
-import {cacheLife} from "next/cache";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = process.env.BASE_URL;
+
+export const instant = false;
 
 const EventDetailItem = ({ icon, alt, label }: { icon: string; alt: string; label: string; }) => (
     <div className="flex-row-gap-2 items-center">
@@ -35,11 +36,7 @@ const EventTags = ({ tags }: { tags: string[] }) => (
     </div>
 )
 
-const EventDetails = async ({ params }: { params: Promise<string> }) => {
-    'use cache'
-    cacheLife('hours');
-    const slug = await params;
-
+const EventDetails = async ({ slug }: { slug: string }) => {
     let event;
     try {
         const request = await fetch(`${BASE_URL}/api/events/${slug}`, {
