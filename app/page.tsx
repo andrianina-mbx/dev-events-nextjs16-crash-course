@@ -2,6 +2,8 @@ import ExploreBtn from "@/components/explorebtn";
 import EventCard from "@/components/EventCard";
 import {IEvent} from "@/database";
 
+export const instant = false;
+
 const BASE_URL = process.env.BASE_URL;
 
 const Page = async () => {
