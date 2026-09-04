@@ -1,6 +1,8 @@
 import {Suspense} from "react";
 import EventDetails from "@/components/EventDetails";
 
+export const instant = false;
+
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}) => {
     const { slug } = await params;
 
